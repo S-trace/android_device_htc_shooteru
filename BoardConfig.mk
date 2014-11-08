@@ -24,6 +24,7 @@
 # variant, so that it gets overwritten by the parent (which goes
 # against the traditional rules of inheritance).
 
+
 # inherit from common msm8660
 -include device/htc/msm8660-common/BoardConfigCommon.mk
 
@@ -83,7 +84,7 @@ BOARD_FLASH_BLOCK_SIZE := 262144
 
 #Recovery
 TARGET_RECOVERY_FSTAB := device/htc/shooteru/ramdisk/fstab.shooteru
-TARGET_RECOVERY_UI_LIB := librecovery_ui_shooteru
+#TARGET_RECOVERY_UI_LIB := librecovery_ui_shooteru
 BOARD_SDCARD_DEVICE_PRIMARY := /dev/block/mmcblk1p1
 BOARD_SDCARD_DEVICE_SECONDARY := /dev/block/mmcblk1
 BOARD_SDEXT_DEVICE := /dev/block/mmcblk1p2
@@ -109,3 +110,5 @@ TW_EXTERNAL_STORAGE_MOUNT_POINT := "sdcard"
 
 #Philz
 TARGET_COMMON_NAME := HTC EVO 3D GSM
+
+
