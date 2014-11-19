@@ -49,6 +49,13 @@ BOARD_HTC_3D_SUPPORT := true
 #ION
 TARGET_USES_ION := true
 
+# Radio
+BOARD_RIL_CLASS := ../../../device/htc/shooteru/ril
+
+# RIL
+BOARD_PROVIDES_LIBRIL := true
+BOARD_RIL_FIVE_SEARCH_RESPONSES := true
+
 # Bluetooth/Wifi
 -include device/htc/msm8660-common/bcmdhd.mk
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/htc/shooteru/bluetooth
@@ -83,6 +90,7 @@ BOARD_BOOTIMAGE_PARTITION_SIZE := 16777216
 BOARD_FLASH_BLOCK_SIZE := 262144
 
 #Recovery
+#TARGET_NO_RECOVERY := true
 TARGET_RECOVERY_FSTAB := device/htc/shooteru/ramdisk/fstab.shooteru
 #TARGET_RECOVERY_UI_LIB := librecovery_ui_shooteru
 BOARD_SDCARD_DEVICE_PRIMARY := /dev/block/mmcblk1p1
