@@ -51,7 +51,6 @@ TARGET_USES_ION := true
 
 # Radio
 BOARD_RIL_CLASS := ../../../device/htc/shooteru/ril
-
 # RIL
 BOARD_PROVIDES_LIBRIL := true
 BOARD_RIL_FIVE_SEARCH_RESPONSES := true
