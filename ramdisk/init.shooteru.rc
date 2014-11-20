@@ -112,6 +112,13 @@ on boot
 
     # for modem link
     chown system system /sys/module/serial/parameters/modem_enabled
+    # camera
+     chown system camera /sys/camera_htccallback/htccallback
+     chmod 0660 /sys/camera_htccallback/htccallback
+
+     # sync fs
+     chown system /sys/devices/platform/rs300000a7.65536/force_sync
+     chown system /sys/devices/platform/rs300000a7.65536/sync_sts
 
     # To prevent out of order acknowledgements from making
     # connection tracking to treat them as not belonging to
@@ -265,17 +272,22 @@ on property:service.modem.enable=1
 on property:service.modem.enable=0
     stop modem
 
-#service hdmid /system/bin/hdmid
-#    class main
-#    socket hdmid stream 0660 root system graphics
-#    disabled
+service hdmid /system/bin/hdmid
+    class main
+    socket hdmid stream 0660 root system graphics
+    disabled
 
-#on property:ro.hdmi.enable=true
-#    start hdmid
+on property:ro.hdmi.enable=true
+    start hdmid
 
 service htcbatt /system/bin/htcbatt
     class main
     user root
+
+service qcamerasvr /system/bin/mm-qcamera-daemon
+    class main
+    user system
+    group system camera inet
 
 #service mpdecision /system/bin/mpdecision --no_sleep --avg_comp
 #    class main
