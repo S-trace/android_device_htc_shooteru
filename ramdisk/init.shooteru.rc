@@ -161,6 +161,10 @@ on boot
 
     chmod 0444 /sys/devices/platform/msm_hsusb/gadget/usb_state
 
+    chmod 0644 /proc/cmdline
+
+    write /sys/module/subsystem_restart/parameters/restart_level 3
+
     # for wireless modem
     chown system system /dev/ttyHSUSB0
     chown system system /dev/ttySA0
@@ -258,7 +262,7 @@ service iprenew_wlan0 /system/bin/dhcpcd -n
     disabled
     oneshot
 
-service rmt_storage /system/bin/rmt_storage /dev/block/mmcblk0p25 /dev/block/mmcblk0p26 /dev/block/mmcblk0p18
+service rmt_storage /system/bin/rmt_storage /dev/block/mmcblk0p25 /dev/block/mmcblk0p26 /dev/block/mmcblk0p18 /dev/block/mmcblk0p17
     class core
     user root
 
