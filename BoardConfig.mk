@@ -46,6 +46,9 @@ TARGET_KERNEL_CONFIG := shooter_u_defconfig
 # Camera
 BOARD_HTC_3D_SUPPORT := true
 
+# GPS
+TARGET_GPS_HAL_PATH := $(LOCAL_PATH)/gps
+
 #ION
 TARGET_USES_ION := true
 
