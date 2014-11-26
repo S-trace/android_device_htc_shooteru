@@ -76,6 +76,7 @@ PRODUCT_COPY_FILES += $(LOCAL_KERNEL):kernel
 
 
 
+
 # cat /proc/emmc
 #dev:        size     erasesize name
 #mmcblk0p31: 000ffa00 00000200 "misc"
