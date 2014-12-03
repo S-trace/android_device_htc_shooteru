@@ -46,6 +46,7 @@ PRODUCT_PACKAGES += \
     detect_key \
     offmode_charging \
     power_test \
+    hostapd_default.conf \
     htcbatt
 
 # dsp Audio

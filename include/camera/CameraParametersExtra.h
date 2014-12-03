@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+
 #define CAMERA_PARAMETERS_EXTRA_C \
 const char CameraParameters::KEY_SUPPORTED_HFR_SIZES[] = "hfr-size-values"; \
 const char CameraParameters::KEY_PREVIEW_FRAME_RATE_MODE[] = "preview-frame-rate-mode"; \
@@ -47,6 +48,7 @@ const char CameraParameters::KEY_SUPPORTED_VIDEO_HIGH_FRAME_RATE_MODES[] = "vide
 const char CameraParameters::KEY_HIGH_DYNAMIC_RANGE_IMAGING[] = "hdr"; \
 const char CameraParameters::KEY_SUPPORTED_HDR_IMAGING_MODES[] = "hdr-values"; \
 const char CameraParameters::KEY_SUPPORTED_ISO_MODES[] = "iso-values"; \
+const char CameraParameters::KEY_SUPPORTED_3D_FILE_FORMAT[] = "3d-file-format"; \
 const char CameraParameters::KEY_ISO_MODE[] = "iso"; \
 const char CameraParameters::KEY_TIME_CONS_POST_PROCESSING[] = "time-cons-post-processing"; \
 const char CameraParameters::KEY_OIS_MODE[] = "ois_mode"; \
@@ -193,6 +195,10 @@ static int parseNDimVector(const char *str, int *num, int N, char delim = ',') \
         start = end+1; \
     } \
     return 0; \
+} \
+void CameraParameters::set3DFileFormat(const char *format) \
+{ \
+set(KEY_SUPPORTED_3D_FILE_FORMAT, format); \
 } \
 int CameraParameters::getOrientation() const \
 { \
@@ -406,6 +412,8 @@ struct FPSRange{ \
     static const char FOCUS_MODE_NORMAL[]; \
     static const char KEY_SKIN_TONE_ENHANCEMENT[]; \
     static const char KEY_SUPPORTED_SKIN_TONE_ENHANCEMENT_MODES[]; \
+    const char CameraParameters::FILE_FORMAT_MPO[] = "mpo"; \
+    const char CameraParameters::FILE_FORMAT_JPS[] = "jps"; \
     static const char ISO_AUTO[]; \
     static const char ISO_HJR[] ; \
     static const char ISO_100[]; \
