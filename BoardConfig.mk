@@ -77,6 +77,7 @@ PRODUCT_COPY_FILES += $(LOCAL_KERNEL):kernel
 
 
 
+
 # cat /proc/emmc
 #dev:        size     erasesize name
 #mmcblk0p31: 000ffa00 00000200 "misc"
@@ -92,6 +93,14 @@ PRODUCT_COPY_FILES += $(LOCAL_KERNEL):kernel
 #mmcblk0p18: 007ffa00 00000200 "radio_config"
 #mmcblk0p25: 00400000 00000200 "modem_st1"
 #mmcblk0p26: 00400000 00000200 "modem_st2"
+
+
+# RIL
+BOARD_RIL_CLASS := ../../../$(LOCAL_PATH)/ril
+
+# Misc
+BOARD_USES_LEGACY_MMAP := true
+
 
 TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 838859776

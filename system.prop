@@ -27,6 +27,7 @@ persist.user.panel3D=1
 
 #Ril
 rild.libpath=/system/lib/libhtc_ril.so
+<<<<<<< HEAD
 ro.telephony.ril_class=HTCQualcommRIL
 ro.telephony.ril.v3=datacallapn,signalstrength
 
@@ -68,6 +69,9 @@ ro.ril.disable.power.collapse=1
 
 # For China NEL
 ro.ril.enable.prl.recognition=1
+=======
+ro.telephony.ril_class=HtcMsm8660RIL
+>>>>>>> 2b5fd1e... pyramid: RIL: Add custom HtcMsm8660RIL to fix SignalStrength
 
 wifi.interface=wlan0
 wifi.supplicant_scan_interval=160
