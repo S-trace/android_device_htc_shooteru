@@ -68,7 +68,7 @@ BOARD_KERNEL_BASE := 0x48000000
 #BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01400000
 #LOCAL_KERNEL := device/htc/shooteru/kernel/kernel-3.4
 
-# for 3.1 kernel
+# for 3.0 kernel
 LOCAL_KERNEL := device/htc/shooteru/kernel/kernel
 
 PRODUCT_COPY_FILES := \
