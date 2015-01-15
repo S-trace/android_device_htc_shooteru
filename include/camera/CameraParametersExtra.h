@@ -141,6 +141,8 @@ const char CameraParameters::KEY_HISTOGRAM[] = "histogram"; \
 const char CameraParameters::KEY_SUPPORTED_HISTOGRAM_MODES[] = "histogram-values"; \
 const char CameraParameters::HISTOGRAM_ENABLE[] = "enable"; \
 const char CameraParameters::HISTOGRAM_DISABLE[] = "disable"; \
+const char CameraParameters::FILE_FORMAT_MPO[] = "mpo"; \
+const char CameraParameters::FILE_FORMAT_JPS[] = "jps"; \
 const char CameraParameters::SKIN_TONE_ENHANCEMENT_ENABLE[] = "enable"; \
 const char CameraParameters::SKIN_TONE_ENHANCEMENT_DISABLE[] = "disable"; \
 const char CameraParameters::DENOISE_OFF[] = "denoise-off"; \
@@ -412,8 +414,8 @@ struct FPSRange{ \
     static const char FOCUS_MODE_NORMAL[]; \
     static const char KEY_SKIN_TONE_ENHANCEMENT[]; \
     static const char KEY_SUPPORTED_SKIN_TONE_ENHANCEMENT_MODES[]; \
-    const char CameraParameters::FILE_FORMAT_MPO[] = "mpo"; \
-    const char CameraParameters::FILE_FORMAT_JPS[] = "jps"; \
+    static const char FILE_FORMAT_MPO[]; \
+    static const char FILE_FORMAT_JPS[]; \
     static const char ISO_AUTO[]; \
     static const char ISO_HJR[] ; \
     static const char ISO_100[]; \

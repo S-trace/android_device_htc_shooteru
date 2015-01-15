@@ -14,17 +14,8 @@
 # limitations under the License.
 #
 
-# Get the long list of APNs
-PRODUCT_COPY_FILES := device/htc/shooteru/apns-full-conf.xml:system/etc/apns-conf.xml
-
 # Inherit from the common Open Source product configuration
 $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
-
-PRODUCT_NAME := shooteru
-PRODUCT_DEVICE := shooteru
-PRODUCT_BRAND := Android
-PRODUCT_MODEL := AOSP on shooteru
-PRODUCT_MANUFACTURER := HTC
 
 # common msm8660 configs
 $(call inherit-product, device/htc/msm8660-common/msm8660.mk)
@@ -102,7 +93,6 @@ $(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4329
 # keylayouts
 PRODUCT_COPY_FILES += \
     device/htc/shooteru/keylayout/h2w_headset.kl:system/usr/keylayout/h2w_headset.kl\
-    device/htc/shooteru/keylayout/qwerty.kl:system/usr/keylayout/qwerty.kl\
     device/htc/shooteru/keylayout/atmel-touchscreen.kl:system/usr/keylayout/atmel-touchscreen.kl \
     device/htc/shooteru/keylayout/shooteru-keypad.kl:system/usr/keylayout/shooteru-keypad.kl
 
@@ -170,17 +160,15 @@ PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml \
-frameworks/av/media/libstagefright/data/media_codecs_ffmpeg.xml:system/etc/media_codecs_ffmpeg.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_ffmpeg.xml:system/etc/media_codecs_ffmpeg.xml \
     $(LOCAL_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml \
     $(LOCAL_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml \
-    $(LOCAL_PATH)/configs/audio_policy.xml:system/etc/audio_policy.xml \
-    $(LOCAL_PATH)/configs/audio_effects.xml:system/etc/audio_effects.xml 
+    $(LOCAL_PATH)/configs/audio_policy.conf:system/etc/audio_policy.conf
 
 # ADB
 ADDITIONAL_DEFAULT_PROPERTIES+=  ro.adb.secure=0
 
-# (2) Also get non-open-source specific aspects if available
-$(call inherit-product-if-exists, vendor/htc/shooteru/shooteru-vendor.mk)
+$(call inherit-product, vendor/htc/shooteru/shooteru-vendor.mk)
 
 # media profiles and capabilities spec
 $(call inherit-product, device/htc/shooteru/media_a1026.mk)
@@ -189,4 +177,3 @@ $(call inherit-product, device/htc/shooteru/media_a1026.mk)
 $(call inherit-product, device/htc/shooteru/media_htcaudio.mk)
 
 $(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
-
