@@ -127,9 +127,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += device/common/gps/gps.conf_EU:system/etc/gps.conf
 
 # Kernel init.d script
-PRODUCT_COPY_FILES += \
-    device/htc/shooteru/configs/99kernel:system/etc/init.d/99kernel \
-    device/htc/shooteru/configs/00_frandom:system/etc/init.d/00_frandom
+#PRODUCT_COPY_FILES += \
+#    device/htc/shooteru/configs/99kernel:system/etc/init.d/99kernel \
+#    device/htc/shooteru/configs/00_frandom:system/etc/init.d/00_frandom
 
 # Torch
 PRODUCT_PACKAGES += \
