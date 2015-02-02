@@ -1,3 +1,4 @@
+
 # Inherit some common CM stuff.
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
@@ -13,7 +14,7 @@ PRODUCT_BRAND := HTC
 PRODUCT_MANUFACTURER := HTC
 PRODUCT_MODEL := Evo 3D GSM
 
-# Bootanimation
+# Boot animation (HACK 540.zip crashes PVR currently)
 TARGET_SCREEN_HEIGHT := 720
 TARGET_SCREEN_WIDTH := 480
 
