@@ -65,7 +65,7 @@ BOARD_KERNEL_CMDLINE := console=ttyHSL0 androidboot.hardware=shooteru no_console
 BOARD_KERNEL_PAGE_SIZE := 2048 
 BOARD_KERNEL_BASE := 0x48000000
 # for 3.4 kernel
-#BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01400000
+BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01400000
 #LOCAL_KERNEL := device/htc/shooteru/kernel/kernel-3.4
 
 # for 3.0 kernel
@@ -74,7 +74,8 @@ LOCAL_KERNEL := device/htc/shooteru/kernel/kernel
 PRODUCT_COPY_FILES += $(LOCAL_KERNEL):kernel
 
 
-
+# Charge mode
+BOARD_CHARGING_MODE_BOOTING_LPM := /sys/htc_lpm/lpm_mode
 
 
 
@@ -96,7 +97,7 @@ PRODUCT_COPY_FILES += $(LOCAL_KERNEL):kernel
 
 
 # RIL
-BOARD_RIL_CLASS := ../../../$(LOCAL_PATH)/ril
+BOARD_RIL_CLASS := ../../../device/htc/shooteru/ril
 
 # Misc
 BOARD_USES_LEGACY_MMAP := true

@@ -13,8 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-
 #define CAMERA_PARAMETERS_EXTRA_C \
 const char CameraParameters::KEY_SUPPORTED_HFR_SIZES[] = "hfr-size-values"; \
 const char CameraParameters::KEY_PREVIEW_FRAME_RATE_MODE[] = "preview-frame-rate-mode"; \
@@ -56,12 +54,10 @@ const char CameraParameters::KEY_APP_OIS_SETTING[] = "ois-setting"; \
 const char CameraParameters::KEY_OIS_SUPPORT[] = "ois_support"; \
 const char CameraParameters::KEY_CONTIBURST_TYPE[] = "contiburst-type"; \
 const char CameraParameters::KEY_CAPTURE_MODE[] = "capture-mode"; \
-const char CameraParameters::CAPTURE_MODE_NORMAL[] = "normal"; \
 const char CameraParameters::CAPTURE_MODE_CONTI_ZOE[] = "contizoe"; \
 const char CameraParameters::CAPTURE_MODE_CONTI_BURST[] = "contiburst"; \
 const char CameraParameters::CAPTURE_MODE_CONTI_BURST_ONE_SHOT[] = "contiburst-one-shot"; \
 const char CameraParameters::CAPTURE_MODE_HDR[] = "hdr"; \
-const char CameraParameters::CAPTURE_MODE_PANORAMA[] = "panorama"; \
 const char CameraParameters::CAPTURE_MODE_ZOE[] = "zoe"; \
 const char CameraParameters::CAPTURE_MODE_EIS[] = "eis"; \
 const char CameraParameters::KEY_CONTI_BURST_STATE[] = "contiburst-state"; \
@@ -170,6 +166,25 @@ const char CameraParameters::REDEYE_REDUCTION_ENABLE[] = "enable"; \
 const char CameraParameters::REDEYE_REDUCTION_DISABLE[] = "disable"; \
 const char CameraParameters::HDR_ENABLE[] = "enable"; \
 const char CameraParameters::HDR_DISABLE[] = "disable"; \
+const char CameraParameters::CAF_OFF[] = "caf-off"; \
+const char CameraParameters::CAF_ON[] = "caf-on"; \
+const char CameraParameters::CAPTURE_MODE_NORMAL[] = "normal"; \
+const char CameraParameters::CAPTURE_MODE_BURST[] = "burst"; \
+const char CameraParameters::CAPTURE_MODE_HJR[] = "hjr"; \
+const char CameraParameters::CAPTURE_MODE_PANORAMA[] = "panorama"; \
+const char CameraParameters::CONTINUOUS_AF_OFF[] = "caf-off"; \
+const char CameraParameters::CONTINUOUS_AF_ON[] = "caf-on"; \
+const char CameraParameters::FOCUS_MODE_CONTINUOUS_CAMERA[] = "continuous-camera"; \
+const char CameraParameters::KEY_CONTINUOUS_AF[] = "continuous-af"; \
+const char CameraParameters::KEY_CAF[] = "continuous-af"; \
+const char CameraParameters::KEY_PICTURE_COUNT[] = "picture-count"; \
+const char CameraParameters::KEY_MAX_BURST_PICTURE_COUNT[] = "max-burst-picture-count"; \
+const char CameraParameters::KEY_SUPPORTED_CONTINUOUS_AF[] = "continuous-af-mode"; \
+const char CameraParameters::KEY_SUPPORTED_CAF[] = "continuous-af-values"; \
+const char CameraParameters::KEY_TAKING_PICTURE_ZOOM[] = "taking-picture-zoom"; \
+const char CameraParameters::KEY_PANORAMA_MODE[] = "panorama-mode"; \
+const char CameraParameters::PANORAMA_MODE_NOT_INPROGRESS[] = "not-in-progress"; \
+const char CameraParameters::PANORAMA_MODE_INPROGRESS[] = "in-progress"; \
 const char CameraParameters::KEY_AE_BRACKET_HDR[] = "ae-bracket-hdr"; \
 static const char* portrait = "portrait"; \
 static const char* landscape = "landscape"; \
@@ -355,10 +370,7 @@ struct FPSRange{ \
     static const char KEY_CAPTURE_MODE[]; \
     static const char CAPTURE_MODE_NORMAL[]; \
     static const char CAPTURE_MODE_CONTI_ZOE[]; \
-    static const char CAPTURE_MODE_CONTI_BURST[]; \
     static const char CAPTURE_MODE_CONTI_BURST_ONE_SHOT[]; \
-    static const char CAPTURE_MODE_HDR[]; \
-    static const char CAPTURE_MODE_PANORAMA[]; \
     static const char CAPTURE_MODE_ZOE[]; \
     static const char CAPTURE_MODE_EIS[]; \
     static const char KEY_CONTI_BURST_STATE[]; \
@@ -467,13 +479,35 @@ struct FPSRange{ \
     static const char REDEYE_REDUCTION_DISABLE[]; \
     static const char HDR_ENABLE[]; \
     static const char HDR_DISABLE[]; \
+    static const char KEY_SUPPORTED_3D_FILE_FORMAT[]; \
     static const char KEY_AE_BRACKET_HDR[]; \
+    static const char CAF_OFF[]; \
+    static const char CAF_ON[]; \
+    static const char CAPTURE_MODE_BURST[]; \
+    static const char CAPTURE_MODE_CONTI_BURST[]; \
+    static const char CAPTURE_MODE_HDR[]; \
+    static const char CAPTURE_MODE_HJR[]; \
+    static const char CAPTURE_MODE_PANORAMA[]; \
+    static const char CONTINUOUS_AF_OFF[]; \
+    static const char CONTINUOUS_AF_ON[]; \
+    static const char FOCUS_MODE_CONTINUOUS_CAMERA[]; \
+    static const char KEY_CONTINUOUS_AF[]; \
+    static const char KEY_CAF[]; \
+    static const char KEY_PICTURE_COUNT[]; \
+    static const char KEY_MAX_BURST_PICTURE_COUNT[]; \
+    static const char KEY_SUPPORTED_CONTINUOUS_AF[]; \
+    static const char KEY_SUPPORTED_CAF[]; \
+    static const char KEY_TAKING_PICTURE_ZOOM[]; \
+    static const char KEY_PANORAMA_MODE[]; \
+    static const char PANORAMA_MODE_NOT_INPROGRESS[]; \
+    static const char PANORAMA_MODE_INPROGRESS[]; \
     enum { \
         CAMERA_ORIENTATION_UNKNOWN = 0, \
         CAMERA_ORIENTATION_PORTRAIT = 1, \
         CAMERA_ORIENTATION_LANDSCAPE = 2, \
     }; \
     int getOrientation() const; \
+    void set3DFileFormat(const char*); \
     void setOrientation(int orientation); \
     void setPreviewFpsRange(int minFPS,int maxFPS); \
     void getSupportedHfrSizes(Vector<Size> &sizes) const; \
