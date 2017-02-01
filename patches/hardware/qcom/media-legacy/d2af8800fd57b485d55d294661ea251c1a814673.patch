@@ -1,0 +1,24 @@
+From d2af8800fd57b485d55d294661ea251c1a814673 Mon Sep 17 00:00:00 2001
+From: Sultanxda <sultanxda@gmail.com>
+Date: Mon, 16 Dec 2013 16:28:17 -0800
+Subject: [PATCH] vidc: Use ION for decoder
+
+---
+ mm-video/vidc/vdec/Android.mk | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/mm-video/vidc/vdec/Android.mk b/mm-video/vidc/vdec/Android.mk
+index 9a4bfbe..81ede2a 100755
+--- a/mm-video/vidc/vdec/Android.mk
++++ b/mm-video/vidc/vdec/Android.mk
+@@ -45,7 +45,9 @@ endif
+ ifeq ($(TARGET_BOARD_PLATFORM),msm7x30)
+ libOmxVdec-def += -DMAX_RES_720P
+ endif
+-
++ifeq ($(TARGET_USES_ION),true)
++libOmxVdec-def += -DUSE_ION
++endif
+ libOmxVdec-def += -D_ANDROID_ICS_
+ 
+ # ---------------------------------------------------------------------------------

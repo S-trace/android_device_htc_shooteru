@@ -1,0 +1,26 @@
+From 259542ed0e0b5f175bc10a6737a8022aeab181fd Mon Sep 17 00:00:00 2001
+From: Darescu Ionut <ionut.darescu@gmail.com>
+Date: Mon, 19 Aug 2013 21:37:41 +0300
+Subject: [PATCH 1/2] Half-press focus button
+
+Change-Id: I0bb2e6a544f1f021f53bd9f403f82b6a84c8e0bb
+---
+ data/keyboards/Generic.kl | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/data/keyboards/Generic.kl b/data/keyboards/Generic.kl
+index 1413319..28bc365 100644
+--- a/data/keyboards/Generic.kl
++++ b/data/keyboards/Generic.kl
+@@ -230,7 +230,7 @@ key 207   MEDIA_PLAY
+ key 208   MEDIA_FAST_FORWARD
+ # key 209 "KEY_BASSBOOST"
+ # key 210 "KEY_PRINT"
+-# key 211 "KEY_HP"
++key 211 FOCUS
+ key 212   CAMERA
+ key 213   MUSIC
+ # key 214 "KEY_QUESTION"
+-- 
+2.9.3
+

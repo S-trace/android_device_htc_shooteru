@@ -1,0 +1,71 @@
+From 0ffd7811e1c6fb1eaf45a48bc6db54b9cbb85885 Mon Sep 17 00:00:00 2001
+From: liquid0624 <rjbirnesser@gmail.com>
+Date: Mon, 10 Jun 2013 03:01:08 -0400
+Subject: [PATCH 1/4] qcom media: fix build in ISO C++11 mode
+
+---
+ dashplayer/DashPlayer.cpp             | 2 +-
+ mm-video/vidc/vdec/Android.mk         | 1 +
+ mm-video/vidc/venc/test/venc_test.cpp | 8 ++++----
+ 3 files changed, 6 insertions(+), 5 deletions(-)
+
+diff --git a/dashplayer/DashPlayer.cpp b/dashplayer/DashPlayer.cpp
+index 157d316..552c189 100644
+--- a/dashplayer/DashPlayer.cpp
++++ b/dashplayer/DashPlayer.cpp
+@@ -1570,7 +1570,7 @@ status_t DashPlayer::getParameter(int key, Parcel *reply)
+     }
+ 
+     utf8_to_utf16_no_null_terminator((uint8_t *)data_8, data_8_Size, (char16_t *) data_16);
+-    err = reply->writeString16((char16_t *)data_16, data_8_Size);
++    err = reply->writeString16((uint16_t *)data_16, data_8_Size);
+     free(data_16);
+     return err;
+ }
+diff --git a/mm-video/vidc/vdec/Android.mk b/mm-video/vidc/vdec/Android.mk
+index 9367ea5..e8c3151 100644
+--- a/mm-video/vidc/vdec/Android.mk
++++ b/mm-video/vidc/vdec/Android.mk
+@@ -87,6 +87,7 @@ endif
+ LOCAL_MODULE                    := libOmxVdec
+ LOCAL_MODULE_TAGS               := optional
+ LOCAL_CFLAGS                    := $(libOmxVdec-def)
++LOCAL_CFLAGS                    += -fno-strict-aliasing
+ LOCAL_C_INCLUDES                += $(libmm-vdec-inc)
+ 
+ LOCAL_PRELINK_MODULE    := false
+diff --git a/mm-video/vidc/venc/test/venc_test.cpp b/mm-video/vidc/venc/test/venc_test.cpp
+index f2e651a..1650fe6 100644
+--- a/mm-video/vidc/venc/test/venc_test.cpp
++++ b/mm-video/vidc/venc/test/venc_test.cpp
+@@ -80,23 +80,23 @@ REFERENCES
+ #ifdef VENC_SYSLOG
+ #include "cutils/log.h"
+ /// Debug message macro
+-#define D(fmt, ...) LOGE("venc_test Debug %s::%d "fmt"\n",              \
++#define D(fmt, ...) LOGE("venc_test Debug %s::%d " fmt "\n",              \
+                          __FUNCTION__, __LINE__,                        \
+                          ## __VA_ARGS__)
+ 
+ /// Error message macro
+-#define E(fmt, ...) LOGE("venc_test Error %s::%d "fmt"\n",            \
++#define E(fmt, ...) LOGE("venc_test Error %s::%d " fmt "\n",            \
+                          __FUNCTION__, __LINE__,                      \
+                          ## __VA_ARGS__)
+ 
+ #else
+      #ifdef TEST_LOG
+-       #define D(fmt, ...) fprintf(stderr, "venc_test Debug %s::%d "fmt"\n",   \
++       #define D(fmt, ...) fprintf(stderr, "venc_test Debug %s::%d " fmt "\n",   \
+                             __FUNCTION__, __LINE__,                     \
+                             ## __VA_ARGS__)
+ 
+      /// Error message macro
+-      #define E(fmt, ...) fprintf(stderr, "venc_test Error %s::%d "fmt"\n", \
++      #define E(fmt, ...) fprintf(stderr, "venc_test Error %s::%d " fmt "\n", \
+                             __FUNCTION__, __LINE__,                   \
+                             ## __VA_ARGS__)
+      #else
+-- 
+2.9.3
+

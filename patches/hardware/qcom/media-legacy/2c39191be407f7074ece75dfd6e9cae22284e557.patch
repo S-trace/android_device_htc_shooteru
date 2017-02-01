@@ -1,0 +1,45 @@
+From 2c39191be407f7074ece75dfd6e9cae22284e557 Mon Sep 17 00:00:00 2001
+From: Darescu Ionut <ionut.darescu@gmail.com>
+Date: Wed, 7 May 2014 09:18:51 -0400
+Subject: [PATCH] media: Avoid collision with FFMPEG plugin
+
+---
+ mm-core/inc/QCMetaData.h | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/mm-core/inc/QCMetaData.h b/mm-core/inc/QCMetaData.h
+index 9ae1f75..ccedf8e 100644
+--- a/mm-core/inc/QCMetaData.h
++++ b/mm-core/inc/QCMetaData.h
+@@ -36,6 +36,7 @@ namespace android {
+ enum {
+     kKeyAacCodecSpecificData = 'nacc' , // for native aac files
+ 
++#if 0
+     kKeyRawCodecSpecificData = 'rcsd',  // raw data - added to support mmParser
+     kKeyDivXVersion          = 'DivX',  // int32_t
+     kKeyDivXDrm              = 'QDrm',  // void *
+@@ -47,6 +48,7 @@ enum {
+     kKeyWMAFormatTag         = 'fmtt',  // int64_t
+     kKeyWMABitspersample     = 'bsps',  // int64_t
+     kKeyWMAVirPktSize        = 'vpks',  // int64_t
++#endif
+     kKeyWMAChannelMask       = 'chmk',  // int32_t
+ 
+     kKeyFileFormat           = 'ffmt',  // cstring
+@@ -66,6 +68,7 @@ enum {
+     kKeyHFR                  = 'hfr ',  // int32_t
+ };
+ 
++#if 0
+ enum {
+     kTypeDivXVer_3_11,
+     kTypeDivXVer_4,
+@@ -77,6 +80,7 @@ enum {
+     kTypeWMAPro,
+     kTypeWMALossLess,
+ };
++#endif
+ 
+ }  // namespace android
+ 

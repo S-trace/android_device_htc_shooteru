@@ -1,0 +1,79 @@
+From d8ca1bae424bda14c26b597354db4fbeb45b0788 Mon Sep 17 00:00:00 2001
+From: Sultanxda <sultanxda@gmail.com>
+Date: Thu, 6 Mar 2014 18:55:50 -0800
+Subject: [PATCH] Remove bs optimization
+
+---
+ mm-core/Android.mk            | 2 --
+ mm-video/vidc/vdec/Android.mk | 4 +---
+ mm-video/vidc/venc/Android.mk | 8 ++++++--
+ 3 files changed, 7 insertions(+), 7 deletions(-)
+
+diff --git a/mm-core/Android.mk b/mm-core/Android.mk
+index e8b8698..8c721fa 100644
+--- a/mm-core/Android.mk
++++ b/mm-core/Android.mk
+@@ -3,8 +3,6 @@ ifneq ($(BUILD_TINY_ANDROID),true)
+ LOCAL_PATH:= $(call my-dir)
+ include $(CLEAR_VARS)
+ 
+-OMXCORE_CFLAGS := -g -O3 -DVERBOSE
+-OMXCORE_CFLAGS += -O0 -fno-inline -fno-short-enums
+ OMXCORE_CFLAGS += -D_ANDROID_
+ OMXCORE_CFLAGS += -U_ENABLE_QC_MSG_LOG_
+ 
+diff --git a/mm-video/vidc/vdec/Android.mk b/mm-video/vidc/vdec/Android.mk
+index 266e7f3..82ec736 100755
+--- a/mm-video/vidc/vdec/Android.mk
++++ b/mm-video/vidc/vdec/Android.mk
+@@ -9,17 +9,15 @@ LOCAL_PATH:= $(ROOT_DIR)
+ # 				Common definitons
+ # ---------------------------------------------------------------------------------
+ 
+-libOmxVdec-def := -D__alignx\(x\)=__attribute__\(\(__aligned__\(x\)\)\)
+ libOmxVdec-def += -D__align=__alignx
+ libOmxVdec-def += -Dinline=__inline
+-libOmxVdec-def += -g -O3
+ libOmxVdec-def += -DIMAGE_APPS_PROC
+ libOmxVdec-def += -D_ANDROID_
+ libOmxVdec-def += -DCDECL
+ libOmxVdec-def += -DT_ARM
+ libOmxVdec-def += -DNO_ARM_CLZ
+ libOmxVdec-def += -UENABLE_DEBUG_LOW
+-#libOmxVdec-def += -DENABLE_DEBUG_HIGH
++libOmxVdec-def += -DENABLE_DEBUG_HIGH
+ libOmxVdec-def += -DENABLE_DEBUG_ERROR
+ libOmxVdec-def += -UINPUT_BUFFER_LOG
+ libOmxVdec-def += -UOUTPUT_BUFFER_LOG
+diff --git a/mm-video/vidc/venc/Android.mk b/mm-video/vidc/venc/Android.mk
+index e2e6eae..0500408 100644
+--- a/mm-video/vidc/venc/Android.mk
++++ b/mm-video/vidc/venc/Android.mk
+@@ -9,14 +9,13 @@ LOCAL_PATH:= $(ROOT_DIR)
+ # 				Common definitons
+ # ---------------------------------------------------------------------------------
+ 
+-libmm-venc-def := -g -O3 -Dlrintf=_ffix_r
+ libmm-venc-def += -D__align=__alignx
+ libmm-venc-def += -D__alignx\(x\)=__attribute__\(\(__aligned__\(x\)\)\)
+ libmm-venc-def += -DT_ARM
+ libmm-venc-def += -Dinline=__inline
+ libmm-venc-def += -D_ANDROID_
+ libmm-venc-def += -UENABLE_DEBUG_LOW
+-#libmm-venc-def += -DENABLE_DEBUG_HIGH
++libmm-venc-def += -DENABLE_DEBUG_HIGH
+ libmm-venc-def += -DENABLE_DEBUG_ERROR
+ libmm-venc-def += -UINPUT_BUFFER_LOG
+ libmm-venc-def += -UOUTPUT_BUFFER_LOG
+@@ -42,6 +41,11 @@ endif
+ ifeq ($(TARGET_BOARD_PLATFORM),msm7x30)
+ libmm-venc-def += -DMAX_RES_720P
+ endif
++ifneq ($(BOARD_USES_PMEM_ADSP),true)
++ifeq ($(TARGET_USES_ION),true)
++libmm-venc-def += -DUSE_ION
++endif
++endif
+ libmm-venc-def += -D_ANDROID_ICS_
+ # ---------------------------------------------------------------------------------
+ # 			Make the Shared library (libOmxVenc)

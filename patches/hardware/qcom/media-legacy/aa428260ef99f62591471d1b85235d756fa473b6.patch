@@ -1,0 +1,19 @@
+From aa428260ef99f62591471d1b85235d756fa473b6 Mon Sep 17 00:00:00 2001
+From: Sultanxda <sultanxda@gmail.com>
+Date: Sat, 1 Mar 2014 13:18:08 -0800
+Subject: [PATCH] Android.mk: Use TARGET_QCOM_MEDIA_VARIANT
+
+---
+ Android.mk | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Android.mk b/Android.mk
+index 647f0cf..bd87875 100755
+--- a/Android.mk
++++ b/Android.mk
+@@ -1,4 +1,4 @@
+-ifeq ($(TARGET_QCOM_DISPLAY_VARIANT),legacy)
++ifeq ($(TARGET_QCOM_MEDIA_VARIANT),legacy)
+ 
+ include $(call all-subdir-makefiles)
+ 

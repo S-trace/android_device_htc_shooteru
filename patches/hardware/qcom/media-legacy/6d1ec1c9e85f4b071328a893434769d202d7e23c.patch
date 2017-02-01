@@ -1,0 +1,25 @@
+From 6d1ec1c9e85f4b071328a893434769d202d7e23c Mon Sep 17 00:00:00 2001
+From: Sultanxda <sultanxda@gmail.com>
+Date: Sat, 1 Mar 2014 13:26:09 -0800
+Subject: [PATCH] vdec: Fix compilation with display-caf
+
+GRALLOC_USAGE_PRIVATE_CP_BUFFER is a remnant of genlock, which is deprecated in Android 4.2+ and can be removed from all display HALs.
+
+Signed-off-by: Sultanxda <sultanxda@gmail.com>
+---
+ mm-video/vidc/vdec/src/omx_vdec.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/mm-video/vidc/vdec/src/omx_vdec.cpp b/mm-video/vidc/vdec/src/omx_vdec.cpp
+index eadd8f1..796d34d 100644
+--- a/mm-video/vidc/vdec/src/omx_vdec.cpp
++++ b/mm-video/vidc/vdec/src/omx_vdec.cpp
+@@ -2872,7 +2872,7 @@ OMX_ERRORTYPE  omx_vdec::get_parameter(OMX_IN OMX_HANDLETYPE     hComp,
+ #else
+                 if(secure_mode) {
+                         nativeBuffersUsage->nUsage = (GRALLOC_USAGE_PRIVATE_MM_HEAP | GRALLOC_USAGE_PROTECTED |
+-                                                      GRALLOC_USAGE_PRIVATE_CP_BUFFER | GRALLOC_USAGE_PRIVATE_UNCACHED);
++                                                      GRALLOC_USAGE_PRIVATE_UNCACHED);
+                         DEBUG_PRINT_HIGH("ION:secure_mode: nUsage 0x%x",nativeBuffersUsage->nUsage);
+                 } else {
+                         nativeBuffersUsage->nUsage = (GRALLOC_USAGE_PRIVATE_MM_HEAP |

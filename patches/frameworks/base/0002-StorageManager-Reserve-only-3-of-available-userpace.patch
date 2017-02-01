@@ -1,0 +1,26 @@
+From 1f506785947a1804f825544dd74eac53077c44bb Mon Sep 17 00:00:00 2001
+From: Darescu Ionut <ionut.darescu@gmail.com>
+Date: Thu, 1 May 2014 02:32:46 -0400
+Subject: [PATCH 2/2] StorageManager: Reserve only 3% of available userpace
+
+Change-Id: I555e50e255971640d4498153f4d10cd06dc21732
+---
+ core/java/android/os/storage/StorageManager.java | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/core/java/android/os/storage/StorageManager.java b/core/java/android/os/storage/StorageManager.java
+index 0a7f4e0..bf97fad 100644
+--- a/core/java/android/os/storage/StorageManager.java
++++ b/core/java/android/os/storage/StorageManager.java
+@@ -615,7 +615,7 @@ public class StorageManager {
+         return null;
+     }
+ 
+-    private static final int DEFAULT_THRESHOLD_PERCENTAGE = 10;
++    private static final int DEFAULT_THRESHOLD_PERCENTAGE = 3;
+     private static final long DEFAULT_THRESHOLD_MAX_BYTES = 500 * MB_IN_BYTES;
+     private static final long DEFAULT_FULL_THRESHOLD_BYTES = MB_IN_BYTES;
+ 
+-- 
+2.9.3
+

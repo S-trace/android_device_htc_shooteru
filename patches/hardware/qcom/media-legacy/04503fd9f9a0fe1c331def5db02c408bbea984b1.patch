@@ -1,0 +1,22 @@
+From 04503fd9f9a0fe1c331def5db02c408bbea984b1 Mon Sep 17 00:00:00 2001
+From: Steve Kondik <shade@chemlab.org>
+Date: Thu, 7 Aug 2014 16:51:57 -0700
+Subject: [PATCH] media: Move sample format tag to framework
+
+Change-Id: Id3081ce8d3079e07343f99463501faa45c5087bf
+---
+ mm-core/inc/QCMetaData.h | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/mm-core/inc/QCMetaData.h b/mm-core/inc/QCMetaData.h
+index fbb68ad..bfa377c 100644
+--- a/mm-core/inc/QCMetaData.h
++++ b/mm-core/inc/QCMetaData.h
+@@ -67,7 +67,6 @@ enum {
+     kKeySmoothStreaming      = 'ESmS',  //bool (int32_t)
+     kKeyHFR                  = 'hfr ',  // int32_t
+ 
+-    kKeySampleBits        = 'sbit', // int32_t (audio sample bit-width)
+     kKeyMinBlkSize        = 'mibs', //int32_t
+     kKeyMaxBlkSize        = 'mabs', //int32_t
+     kKeyMinFrmSize        = 'mifs', //int32_t

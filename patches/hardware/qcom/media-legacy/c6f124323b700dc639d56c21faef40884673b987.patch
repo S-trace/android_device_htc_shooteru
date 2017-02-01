@@ -1,0 +1,53 @@
+From c6f124323b700dc639d56c21faef40884673b987 Mon Sep 17 00:00:00 2001
+From: Sultanxda <sultanxda@gmail.com>
+Date: Sat, 1 Mar 2014 13:23:27 -0800
+Subject: [PATCH] Fix includes for universal display HAL support
+
+Signed-off-by: Sultanxda <sultanxda@gmail.com>
+---
+ libc2dcolorconvert/Android.mk | 2 +-
+ mm-video/vidc/vdec/Android.mk | 4 ++--
+ mm-video/vidc/venc/Android.mk | 2 +-
+ 3 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/libc2dcolorconvert/Android.mk b/libc2dcolorconvert/Android.mk
+index cc8efc8..47079ca 100644
+--- a/libc2dcolorconvert/Android.mk
++++ b/libc2dcolorconvert/Android.mk
+@@ -8,7 +8,7 @@ LOCAL_SRC_FILES := \
+ LOCAL_C_INCLUDES := \
+     $(TOP)/frameworks/av/include/media/stagefright \
+     $(TOP)/frameworks/native/include/media/openmax \
+-    $(TOP)/hardware/qcom/display-legacy/libcopybit
++    $(TOP)/hardware/qcom/display-$(TARGET_QCOM_DISPLAY_VARIANT)/libcopybit
+ 
+ LOCAL_C_INCLUDES += $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include
+ LOCAL_SHARED_LIBRARIES := liblog libdl
+diff --git a/mm-video/vidc/vdec/Android.mk b/mm-video/vidc/vdec/Android.mk
+index 81ede2a..266e7f3 100755
+--- a/mm-video/vidc/vdec/Android.mk
++++ b/mm-video/vidc/vdec/Android.mk
+@@ -65,8 +65,8 @@ libmm-vdec-inc          += hardware/qcom/media-legacy/mm-core/inc
+ libmm-vdec-inc          += $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include
+ #DRM include - Interface which loads the DRM library
+ libmm-vdec-inc	        += $(OMX_VIDEO_PATH)/DivxDrmDecrypt/inc
+-libmm-vdec-inc          += hardware/qcom/display-legacy/libgralloc
+-libmm-vdec-inc          += hardware/qcom/display-legacy/libgenlock
++libmm-vdec-inc          += hardware/qcom/display-$(TARGET_QCOM_DISPLAY_VARIANT)/libgralloc
++libmm-vdec-inc          += hardware/qcom/display-$(TARGET_QCOM_DISPLAY_VARIANT)/libgenlock
+ libmm-vdec-inc          += frameworks/native/include/media/openmax
+ libmm-vdec-inc          += frameworks/native/include/media/hardware
+ 
+diff --git a/mm-video/vidc/venc/Android.mk b/mm-video/vidc/venc/Android.mk
+index 8417300..e2e6eae 100644
+--- a/mm-video/vidc/venc/Android.mk
++++ b/mm-video/vidc/venc/Android.mk
+@@ -56,7 +56,7 @@ libmm-venc-inc      += $(OMX_VIDEO_PATH)/vidc/common/inc
+ libmm-venc-inc      += hardware/qcom/media-legacy/mm-core/inc
+ libmm-venc-inc      += $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include
+ libmm-venc-inc      += hardware/qcom/media-legacy/libstagefrighthw
+-libmm-venc-inc      += hardware/qcom/display-legacy/libgralloc
++libmm-venc-inc      += hardware/qcom/display-$(TARGET_QCOM_DISPLAY_VARIANT)/libgralloc
+ libmm-venc-inc      += frameworks/native/include/media/hardware
+ libmm-venc-inc      += frameworks/native/include/media/openmax
+ 

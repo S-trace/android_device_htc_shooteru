@@ -1,0 +1,82 @@
+From 77503cd6d834d8fab729d7a6a9a98a521bdd577a Mon Sep 17 00:00:00 2001
+From: Sultanxda <sultanxda@gmail.com>
+Date: Tue, 4 Feb 2014 15:15:13 -0800
+Subject: [PATCH] Remove ion_msm.h dependency
+
+---
+ mm-video/vidc/vdec/inc/omx_vdec.h               | 5 +----
+ mm-video/vidc/venc/inc/omx_video_common.h       | 4 ++--
+ mm-video/vidc/venc/src/video_encoder_device.cpp | 6 +++---
+ mm-video/vidc/venc/test/venc_test.cpp           | 2 +-
+ 4 files changed, 7 insertions(+), 10 deletions(-)
+
+diff --git a/mm-video/vidc/vdec/inc/omx_vdec.h b/mm-video/vidc/vdec/inc/omx_vdec.h
+index bc02391..2eaf7e5 100755
+--- a/mm-video/vidc/vdec/inc/omx_vdec.h
++++ b/mm-video/vidc/vdec/inc/omx_vdec.h
+@@ -58,10 +58,7 @@ static ptrdiff_t x;
+ #endif
+ 
+ #ifdef USE_ION
+-#include <ion_msm.h>
+-//#include <linux/ion.h> //TBD - uncomment this
+-//#include <binder/MemoryHeapIon.h>
+-//#else
++#include <linux/ion.h>
+ #endif
+ #include <binder/MemoryHeapBase.h>
+ #include <ui/ANativeObjectBase.h>
+diff --git a/mm-video/vidc/venc/inc/omx_video_common.h b/mm-video/vidc/venc/inc/omx_video_common.h
+index b57a9fa..37f3a3f 100755
+--- a/mm-video/vidc/venc/inc/omx_video_common.h
++++ b/mm-video/vidc/venc/inc/omx_video_common.h
+@@ -32,10 +32,10 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ //                             Include Files
+ //////////////////////////////////////////////////////////////////////////////
+ 
+-#include<stdlib.h>
++#include <stdlib.h>
+ #include <stdio.h>
+ #ifdef USE_ION
+-#include <ion_msm.h>
++#include <linux/ion.h>
+ #endif
+ 
+ #define OMX_VIDEO_DEC_NUM_INPUT_BUFFERS   2
+diff --git a/mm-video/vidc/venc/src/video_encoder_device.cpp b/mm-video/vidc/venc/src/video_encoder_device.cpp
+index 3151444..3123786 100755
+--- a/mm-video/vidc/venc/src/video_encoder_device.cpp
++++ b/mm-video/vidc/venc/src/video_encoder_device.cpp
+@@ -25,16 +25,16 @@ WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+ OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ --------------------------------------------------------------------------*/
+-#include<string.h>
++#include <string.h>
+ #include <sys/ioctl.h>
+ #include <sys/prctl.h>
+-#include<unistd.h>
++#include <unistd.h>
+ #include <fcntl.h>
+ #include "video_encoder_device.h"
+ #include "omx_video_encoder.h"
+ #include <linux/android_pmem.h>
+ #ifdef USE_ION
+-#include <ion_msm.h>
++#include <linux/ion.h>
+ #endif
+ 
+ #define MPEG4_SP_START 0
+diff --git a/mm-video/vidc/venc/test/venc_test.cpp b/mm-video/vidc/venc/test/venc_test.cpp
+index 16e0c31..68f9819 100755
+--- a/mm-video/vidc/venc/test/venc_test.cpp
++++ b/mm-video/vidc/venc/test/venc_test.cpp
+@@ -68,7 +68,7 @@ REFERENCES
+ #include "venc_util.h"
+ #include "extra_data_handler.h"
+ #ifdef USE_ION
+-#include <ion_msm.h>
++#include <linux/ion.h>
+ #endif
+ 
+ //////////////////////////
