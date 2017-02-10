@@ -1,0 +1,58 @@
+From 75c912e53dd833a7f001fa49c5718e53e43892a1 Mon Sep 17 00:00:00 2001
+From: Darescu Ionut <ionut.darescu@gmail.com>
+Date: Sat, 9 Aug 2014 14:30:58 -0400
+Subject: [PATCH] Revert "Revert "Add camera parameters for htc evo 3D. (2/2)""
+
+This reverts commit 1dc5e259cdf4dd4b7e2ac10caaa7d0c39c8ec1dc.
+---
+ include/hardware/camera.h   | 3 +++
+ modules/gralloc/Android.mk  | 4 ++++
+ modules/gralloc/gralloc.cpp | 5 +++++
+ 3 files changed, 12 insertions(+)
+
+diff --git a/include/hardware/camera.h b/include/hardware/camera.h
+index b1f18ff..facc38f 100644
+--- a/include/hardware/camera.h
++++ b/include/hardware/camera.h
+@@ -78,6 +78,9 @@ typedef struct preview_stream_ops {
+     int (*cancel_buffer)(struct preview_stream_ops* w,
+                 buffer_handle_t* buffer);
+     int (*set_buffer_count)(struct preview_stream_ops* w, int count);
++#ifdef HTC_3D_SUPPORT
++    int (*set_3d_mode)(const struct preview_stream_ops *w, int r1, int r2, int r3);
++#endif
+     int (*set_buffers_geometry)(struct preview_stream_ops* pw,
+                 int w, int h, int format);
+     int (*set_crop)(struct preview_stream_ops *w,
+diff --git a/modules/gralloc/Android.mk b/modules/gralloc/Android.mk
+index 092e851..3816ae8 100644
+--- a/modules/gralloc/Android.mk
++++ b/modules/gralloc/Android.mk
+@@ -33,4 +33,8 @@ ifeq ($(TARGET_USE_PAN_DISPLAY),true)
+ LOCAL_CFLAGS += -DUSE_PAN_DISPLAY=1
+ endif
+ 
++ifeq ($(BOARD_HTC_3D_SUPPORT),true)
++   LOCAL_CFLAGS += -DHTC_3D_SUPPORT
++endif
++
+ include $(BUILD_SHARED_LIBRARY)
+diff --git a/modules/gralloc/gralloc.cpp b/modules/gralloc/gralloc.cpp
+index bdc789d..e9d4a6c 100644
+--- a/modules/gralloc/gralloc.cpp
++++ b/modules/gralloc/gralloc.cpp
+@@ -208,6 +208,11 @@ static int gralloc_alloc(alloc_device_t* dev,
+     int align = 4;
+     int bpp = 0;
+     switch (format) {
++#ifdef HTC_3D_SUPPORT   // HTC uses mode 96 for 3D camera
++        case 96:
++            bpp = 4;
++            break;
++#endif
+         case HAL_PIXEL_FORMAT_RGBA_8888:
+         case HAL_PIXEL_FORMAT_RGBX_8888:
+         case HAL_PIXEL_FORMAT_BGRA_8888:
+-- 
+2.9.3
+
