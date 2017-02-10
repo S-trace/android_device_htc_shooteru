@@ -20,4 +20,5 @@
 # In particular, you can add lunch options with the add_lunch_combo
 # function: add_lunch_combo generic-eng
 
+. device/htc/shooteru/patches/apply.sh
 add_lunch_combo cm_shooteru-userdebug
