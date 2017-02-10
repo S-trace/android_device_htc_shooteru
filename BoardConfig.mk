@@ -45,9 +45,6 @@ TARGET_GPS_HAL_PATH := $(LOCAL_PATH)/gps
 # Font 
 EXTENDED_FONT_FOOTPRINT := true
 
-# Kernel Details
-TARGET_KERNEL_CONFIG := shooter_u_defconfig
-
 # Camera
 BOARD_HTC_3D_SUPPORT := true
 
@@ -61,19 +58,14 @@ BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/htc/shooteru/bluetooth
 # Custom LUN File Path
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun/file
 
+# Kernel Details
+TARGET_KERNEL_SOURCE := kernel/htc/shooter
+TARGET_KERNEL_CONFIG := shooter_u_defconfig
 BOARD_KERNEL_CMDLINE := console=ttyHSL0 androidboot.hardware=shooteru no_console_suspend=1 androidboot.selinux=permissive
 BOARD_KERNEL_PAGE_SIZE := 2048 
 BOARD_KERNEL_BASE := 0x48000000
 # for 3.4 kernel
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01400000
-#LOCAL_KERNEL := device/htc/shooteru/kernel/kernel-3.4
-
-# for 3.0 kernel
-LOCAL_KERNEL := device/htc/shooteru/kernel/kernel
-
-PRODUCT_COPY_FILES += $(LOCAL_KERNEL):kernel
-
-
 # Charge mode
 BOARD_CHARGING_MODE_BOOTING_LPM := /sys/htc_lpm/lpm_mode
 

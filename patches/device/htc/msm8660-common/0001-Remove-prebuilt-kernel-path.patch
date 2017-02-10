@@ -1,0 +1,31 @@
+From 89095883ae8450bf451be40e27af6be765dcbdd1 Mon Sep 17 00:00:00 2001
+From: S-trace <S-trace@list.ru>
+Date: Mon, 6 Feb 2017 22:18:50 +0300
+Subject: [PATCH] Remove prebuilt kernel path
+
+This commit partially reverts 7a27a482da43781c76658fdb63d9ff4a1a4937f5
+
+Change-Id: I1934fc0a80010c438751736330a584a653ca3113
+---
+ msm8660.mk | 5 -----
+ 1 file changed, 5 deletions(-)
+
+diff --git a/msm8660.mk b/msm8660.mk
+index c0fd635..d0f3776 100755
+--- a/msm8660.mk
++++ b/msm8660.mk
+@@ -12,11 +12,6 @@
+ # See the License for the specific language governing permissions and
+ # limitations under the License.
+ 
+-
+-LOCAL_KERNEL := device/htc/shooteru-kernel/kernel
+-PRODUCT_COPY_FILES := \
+-	$(LOCAL_KERNEL):kernel
+-
+ # Qualcomm scripts
+ PRODUCT_COPY_FILES += \
+     device/htc/msm8660-common/prebuilt/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh \
+-- 
+2.9.3
+
