@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <project name="S-trace/android_device_htc_shooteru"             path="device/htc/shooteru"               remote="github" revision="cm-12.1" />
+  <project name="DogukanErgun/android_device_htc_msm8660-common"  path="device/htc/msm8660-common"         remote="github" revision="aosp-5.0" />
+  <project name="DogukanErgun/android_kernel_shooter"             path="kernel/htc/shooter"                remote="github" revision="cm-12.0" />
+  <project name="johnnyslt/android_vendor_htc"                    path="vendor/htc"                        remote="github" revision="cm-11.0" />
+  <project name="johnnyslt/android_hardware_qcom_media-legacy"    path="hardware/qcom/media-caf/msm8660"   remote="github" revision="cm-12.0" />
+  <project name="CyanogenMod/android_hardware_qcom_display"       path="hardware/qcom/display-caf/msm8660" remote="github" revision="cm-12.1-caf-8660" />
+</manifest>
