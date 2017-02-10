@@ -1,0 +1,36 @@
+From daaf01233870c8830047f530cee9d262a6634b36 Mon Sep 17 00:00:00 2001
+From: Steven Luo <steven+android@steven676.net>
+Date: Sun, 16 Nov 2014 04:02:49 -0800
+Subject: [PATCH] Allow targets to choose to build traditional file-based OTAs
+
+---
+ core/Makefile | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+diff --git a/core/Makefile b/core/Makefile
+index 9ab196a..f3fd493 100644
+--- a/core/Makefile
++++ b/core/Makefile
+@@ -1720,13 +1720,18 @@ ifneq ($(TARGET_UNIFIED_DEVICE),)
+     endif
+ endif
+ 
++ifeq ($(TARGET_USE_FILE_OTA),true)
++  OTA_PACKAGE_STYLE :=
++else
++  OTA_PACKAGE_STYLE := --block
++endif
+ $(INTERNAL_OTA_PACKAGE_TARGET): $(BUILT_TARGET_FILES_PACKAGE) $(DISTTOOLS)
+ 	@echo "$(OTA_FROM_TARGET_SCRIPT)" > $(PRODUCT_OUT)/ota_script_path
+ 	@echo "$(override_device)" > $(PRODUCT_OUT)/ota_override_device
+ 	@echo -e ${CL_YLW}"Package OTA:"${CL_RST}" $@"
+ 	$(hide) MKBOOTIMG=$(MKBOOTIMG) \
+ 	   $(OTA_FROM_TARGET_SCRIPT) -v \
+-	   --block \
++	   $(OTA_PACKAGE_STYLE) \
+ 	   $(if $(WITH_LZMA_OTA), -z) \
+ 	   -p $(HOST_OUT) \
+ 	   -k $(KEY_CERT_PAIR) \
+-- 
+2.9.3
+
