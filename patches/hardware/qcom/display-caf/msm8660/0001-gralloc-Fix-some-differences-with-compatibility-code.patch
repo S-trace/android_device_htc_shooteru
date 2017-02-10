@@ -1,0 +1,58 @@
+From c0bb98c6c4111de8f53b83dc47f9a584d8c1758a Mon Sep 17 00:00:00 2001
+From: Steve Kondik <shade@chemlab.org>
+Date: Mon, 9 Sep 2013 14:16:32 -0700
+Subject: [PATCH] gralloc: Fix some differences with compatibility code
+
+Change-Id: I0f41ff987b6b3f554e11ea2f259d778c8cee7fa2
+
+Conflicts:
+	libgralloc/alloc_controller.cpp
+---
+ libgralloc/alloc_controller.cpp | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+diff --git a/libgralloc/alloc_controller.cpp b/libgralloc/alloc_controller.cpp
+index c343d37..a124d38 100644
+--- a/libgralloc/alloc_controller.cpp
++++ b/libgralloc/alloc_controller.cpp
+@@ -188,7 +188,9 @@ int IonController::allocate(alloc_data& data, int usage)
+ {
+     int ionFlags = 0;
+     int ret;
++#ifndef SECURE_MM_HEAP
+     bool nonContig = false;
++#endif
+ 
+     data.uncached = useUncached(usage);
+     data.allocType = 0;
+@@ -198,13 +200,17 @@ int IonController::allocate(alloc_data& data, int usage)
+ 
+     if(usage & GRALLOC_USAGE_PRIVATE_SYSTEM_HEAP) {
+         ionFlags |= ION_HEAP(ION_SYSTEM_HEAP_ID);
++#ifndef SECURE_MM_HEAP
+         nonContig = true;
++#endif
+     }
+ 
+ #ifndef NO_IOMMU
+     if(usage & GRALLOC_USAGE_PRIVATE_IOMMU_HEAP) {
+         ionFlags |= ION_HEAP(ION_IOMMU_HEAP_ID);
++#ifndef SECURE_MM_HEAP
+         nonContig = true;
++#endif
+     }
+ #endif
+ 
+@@ -269,7 +275,9 @@ int IonController::allocate(alloc_data& data, int usage)
+     {
+         ALOGW("Falling back to system heap");
+         data.flags = ION_HEAP(ION_SYSTEM_HEAP_ID);
++#ifndef SECURE_MM_HEAP
+         nonContig = true;
++#endif
+         ret = mIonAlloc->alloc_buffer(data);
+     }
+ 
+-- 
+2.9.3
+

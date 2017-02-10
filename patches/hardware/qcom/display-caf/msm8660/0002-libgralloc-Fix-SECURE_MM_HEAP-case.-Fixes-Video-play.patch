@@ -1,0 +1,29 @@
+From 6bcefadd88ee6fc7db35aacd39bce6683e39fb1b Mon Sep 17 00:00:00 2001
+From: Shantur Rathore <shantur.rathore@gmail.com>
+Date: Mon, 15 Dec 2014 22:13:22 +0000
+Subject: [PATCH] libgralloc : Fix SECURE_MM_HEAP case. Fixes Video playback on
+ 8660
+
+Change-Id: I71cab90457b5a7e9b059c49d904c8993ebdc34e5
+---
+ libgralloc/alloc_controller.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/libgralloc/alloc_controller.cpp b/libgralloc/alloc_controller.cpp
+index 190a4e9..a5b2d88 100644
+--- a/libgralloc/alloc_controller.cpp
++++ b/libgralloc/alloc_controller.cpp
+@@ -281,9 +281,9 @@ int IonController::allocate(alloc_data& data, int usage)
+ 
+     if(ret >= 0 ) {
+         data.allocType |= private_handle_t::PRIV_FLAGS_USES_ION;
++#ifdef SECURE_MM_HEAP
+         if(nonContig)
+             data.allocType |= private_handle_t::PRIV_FLAGS_NONCONTIGUOUS_MEM;
+-#ifndef SECURE_MM_HEAP
+         if(ionFlags & ION_SECURE)
+             data.allocType |= private_handle_t::PRIV_FLAGS_SECURE_BUFFER;
+ #endif
+-- 
+2.9.3
+
