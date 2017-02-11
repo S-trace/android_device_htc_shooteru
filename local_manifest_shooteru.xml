@@ -6,4 +6,5 @@
   <project name="johnnyslt/android_vendor_htc"                    path="vendor/htc"                        remote="github" revision="cm-11.0" />
   <project name="johnnyslt/android_hardware_qcom_media-legacy"    path="hardware/qcom/media-caf/msm8660"   remote="github" revision="cm-12.0" />
   <project name="CyanogenMod/android_hardware_qcom_display"       path="hardware/qcom/display-caf/msm8660" remote="github" revision="cm-12.1-caf-8660" />
+  <project name="CyanogenMod/android_packages_apps_Torch"         path="packages/apps/Torch"               remote="github" revision="cm-12.0"/>
 </manifest>
