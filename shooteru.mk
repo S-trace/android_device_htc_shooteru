@@ -128,6 +128,10 @@ PRODUCT_PACKAGES += \
 ## The gps config appropriate for this device
 PRODUCT_COPY_FILES += device/common/gps/gps.conf_EU:system/etc/gps.conf
 
+# WLAN
+PRODUCT_PACKAGES += \
+    wpa_supplicant.conf
+
 # Kernel init.d script
 #PRODUCT_COPY_FILES += \
 #    device/htc/shooteru/configs/99kernel:system/etc/init.d/99kernel \
