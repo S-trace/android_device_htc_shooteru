@@ -1,0 +1,44 @@
+From a0fd2a6b87dd51a3515fe1bb0e0dace897a118e6 Mon Sep 17 00:00:00 2001
+From: S-trace <S-trace@list.ru>
+Date: Sun, 12 Feb 2017 00:02:19 +0300
+Subject: [PATCH 4/4] [CONFIGS] Do not copy android.hardware.consumerir.xml
+
+Evo 3D doesn't have IR port
+
+Fixes boot failure:
+I/SystemServer( 2901): Consumer IR Service
+E/ConsumerIrService( 2901): Can't open consumer IR HW Module, error: -2
+E/System  ( 2901): ******************************************
+E/System  ( 2901): ************ Failure starting core service
+E/System  ( 2901): java.lang.RuntimeException: FEATURE_CONSUMER_IR present, but no IR HAL loaded!
+E/System  ( 2901):      at com.android.server.ConsumerIrService.<init>(ConsumerIrService.java:51)
+E/System  ( 2901):      at com.android.server.SystemServer.startOtherServices(SystemServer.java:499)
+E/System  ( 2901):      at com.android.server.SystemServer.run(SystemServer.java:285)
+E/System  ( 2901):      at com.android.server.SystemServer.main(SystemServer.java:186)
+E/System  ( 2901):      at java.lang.reflect.Method.invoke(Native Method)
+E/System  ( 2901):      at java.lang.reflect.Method.invoke(Method.java:372)
+E/System  ( 2901):      at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:904)
+E/System  ( 2901):      at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:699)
+
+Change-Id: If7650e0b15a2ab186f9013071b8e82203c1732ac
+---
+ msm8660.mk | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/msm8660.mk b/msm8660.mk
+index d0f3776..c02bab2 100755
+--- a/msm8660.mk
++++ b/msm8660.mk
+@@ -36,8 +36,7 @@ PRODUCT_COPY_FILES += \
+     frameworks/native/data/etc/android.hardware.sensor.accelerometer.xml:system/etc/permissions/android.hardware.sensor.accelerometer.xml \
+     frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
+     frameworks/native/data/etc/android.hardware.sensor.compass.xml:system/etc/permissions/android.hardware.sensor.compass.xml \
+-    packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:system/etc/permissions/android.software.live_wallpaper.xml \
+-    frameworks/native/data/etc/android.hardware.consumerir.xml:system/etc/permissions/android.hardware.consumerir.xml
++    packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:system/etc/permissions/android.software.live_wallpaper.xml
+ 
+ # Audio
+ PRODUCT_PACKAGES += \
+-- 
+2.9.3
+
