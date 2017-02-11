@@ -130,6 +130,7 @@ PRODUCT_COPY_FILES += device/common/gps/gps.conf_EU:system/etc/gps.conf
 
 # WLAN
 PRODUCT_PACKAGES += \
+    wpa_supplicant \
     wpa_supplicant.conf
 
 # Kernel init.d script
