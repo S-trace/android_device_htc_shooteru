@@ -1,0 +1,33 @@
+From 303ad9de449b3ca41ca5217711a313bbf7d6d05f Mon Sep 17 00:00:00 2001
+From: S-trace <S-trace@list.ru>
+Date: Sat, 11 Feb 2017 07:58:23 +0300
+Subject: [PATCH 3/3] [CAMERA] camerawrapper: Fix HAL_MODULE_INFO_SYM
+ initialization
+
+Initialize open_legacy field to NULL
+
+Fixes build failure:
+device/htc/msm8660-common/camerawrapper/CameraWrapper.cpp:70:1: sorry, unimplemented: non-trivial designated initializers not supported
+ };
+ ^
+
+Change-Id: I7a8f5b6f985ba276ad083ec09c8d9aff0a688003
+---
+ camerawrapper/CameraWrapper.cpp | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/camerawrapper/CameraWrapper.cpp b/camerawrapper/CameraWrapper.cpp
+index 13d0c95..baa1a0f 100644
+--- a/camerawrapper/CameraWrapper.cpp
++++ b/camerawrapper/CameraWrapper.cpp
+@@ -66,6 +66,7 @@ camera_module_t HAL_MODULE_INFO_SYM = {
+     .get_camera_info = camera_get_camera_info,
+     .set_callbacks = NULL, /* remove compilation warnings */
+     .get_vendor_tag_ops = NULL, /* remove compilation warnings */
++    .open_legacy = NULL, /* remove compilation warnings */
+     .reserved = {0}, /* remove compilation warnings */
+ };
+ 
+-- 
+2.9.3
+

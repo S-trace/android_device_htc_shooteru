@@ -1,0 +1,35 @@
+From d9671e235eb1badc6d9821b34140621d030c12f3 Mon Sep 17 00:00:00 2001
+From: S-trace <S-trace@list.ru>
+Date: Sat, 11 Feb 2017 07:56:06 +0300
+Subject: [PATCH 2/3] [CAMERA] camerawrapper: Add system/media/camera/include
+ include dir
+
+Fixes build failure:
+In file included from hardware/libhardware/include/hardware/camera.h:20:0,
+                 from device/htc/msm8660-common/camerawrapper/CameraWrapper.cpp:32:
+hardware/libhardware/include/hardware/camera_common.h:27:39: fatal error: system/camera_vendor_tags.h: No such file or directory
+ #include <system/camera_vendor_tags.h>
+                                       ^
+
+Change-Id: Ib5dd8f99e24a630e740ca4ab54bcb00a809a7616
+---
+ camerawrapper/Android.mk | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/camerawrapper/Android.mk b/camerawrapper/Android.mk
+index 0295e83..7de5d97 100644
+--- a/camerawrapper/Android.mk
++++ b/camerawrapper/Android.mk
+@@ -1,6 +1,9 @@
+ LOCAL_PATH := $(call my-dir)
+ include $(CLEAR_VARS)
+ 
++LOCAL_C_INCLUDES += \
++    system/media/camera/include
++
+ LOCAL_SRC_FILES := \
+     CameraWrapper.cpp
+ 
+-- 
+2.9.3
+
