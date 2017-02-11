@@ -1,0 +1,29 @@
+From 21942daffa8f599bbe7723906835826ebd062d35 Mon Sep 17 00:00:00 2001
+From: Amit Shekhar <ashekhar@codeaurora.org>
+Date: Fri, 15 Aug 2014 15:14:27 -0700
+Subject: [PATCH] QCMetadata: add key for pcm 24 bit
+
+-Add 24 bit pcm key. This key is used by wav extractor to decide
+the conversion of 24 bit input source to 16/8_24 format data.
+
+Change-Id: Id7f080307bff5ea2b2b30f475f07d77cbe15393d
+---
+ mm-core/inc/QCMetaData.h | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/mm-core/inc/QCMetaData.h b/mm-core/inc/QCMetaData.h
+index 37607d1..f48f28c 100644
+--- a/mm-core/inc/QCMetaData.h
++++ b/mm-core/inc/QCMetaData.h
+@@ -73,6 +73,8 @@ enum {
+     kKeyMaxFrmSize        = 'mafs', //int32_t
+     kKeyMd5Sum            = 'md5s', //cstring
+     kKeyHSR               = 'hsr ', // int32_t
++
++    kKeyPcmFormat            = 'pfmt', //int32_t (pcm format)
+ };
+ 
+ #if 0
+-- 
+2.9.3
+
